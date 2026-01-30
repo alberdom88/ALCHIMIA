@@ -16,7 +16,8 @@ This package requires:
 `<training_set_file>`: training set file (for curriculum learning use start.csv and add the flag --fixed_training_set)\
 `<output_dir>`: output directory\
 `<epochs>`: number of training epochs\
-`<episodes>`: number of smiles generated for single molecule \\
+`<episodes>`: number of smiles generated for single molecule\
+
 `<max_steps>`: maximum number of applied molecular trasformations (M)\
 `<lr>`: learning rate\
 `<temperature>`: temperature scaling\
