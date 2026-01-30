@@ -11,12 +11,12 @@ This package requires:
 ## Usage
 ### Training 
 
-`python train.py --mode train --data <training_set_file> --out_dir <output_dir> --epochs <epochs> --episodes_per_src <episodes> --max_steps <max_steps> --lr <lr> --temperature <temperature> --top_p <top_p> --w_sa <w_sa> --w_qed <w_qed> --fp_kind <fp_kind> --fp_nbits <fp_nbits> --fp_radius <fp_radius> --src_per_epoch <src_per_epoch> --device <device>` --resume_ckpt <resume_ckpt>`
+`python train.py --mode train --data <training_set_file> --out_dir <output_dir> --epochs <epochs> --episodes_per_src <episodes> --max_steps <max_steps> --lr <lr> --temperature <temperature> --top_p <top_p> --w_sa <w_sa> --w_qed <w_qed> --fp_kind <fp_kind> --fp_nbits <fp_nbits> --fp_radius <fp_radius> --src_per_epoch <src_per_epoch> --device <device> --resume_ckpt <resume_ckpt>`
 
 `<training_set_file>`: training set file (for curriculum learning use start.csv and add the flag --fixed_training_set)\
 `<output_dir>`: output directory\
 `<epochs>`: number of training epochs\
-`<episodes>`: number of smiles generated for single molecule \ 
+`<episodes>`: number of smiles generated for single molecule \\
 `<max_steps>`: maximum number of applied molecular trasformations (M)\
 `<lr>`: learning rate\
 `<temperature>`: temperature scaling\
