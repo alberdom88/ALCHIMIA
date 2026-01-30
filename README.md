@@ -17,7 +17,6 @@ This package requires:
 `<output_dir>`: output directory\
 `<epochs>`: number of training epochs\
 `<episodes>`: number of smiles generated for single molecule\
-
 `<max_steps>`: maximum number of applied molecular trasformations (M)\
 `<lr>`: learning rate\
 `<temperature>`: temperature scaling\
