@@ -1,5 +1,5 @@
 # ALCHIMIA
-This repository contains the code of the method described in "A Reinforcement Learning-guided Genetic Algorithm Integrating Medicinal Chemistry-inspired Molecular Transformations" (submitted).
+This repository contains the code of the method described in "A Reinforcement Learning-guided Genetic Algorithm Integrating Medicinal Chemistry-inspired Molecular Transformations" (submitted, https://chemrxiv.org/doc/25c800f9-b9e7-47a4-afca-79a92d5d9c34).
 
 ## Requisites
 This package requires:
