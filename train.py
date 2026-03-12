@@ -816,6 +816,96 @@ def generate(
 
     return generated
 
+@torch.no_grad()
+def generate_genetic(
+    policy: PolicyNet,
+    src_smiles: str,
+    n_samples: int = 1,
+    max_steps: int = 2,
+    temperature: float = 1.0,
+    top_p: float = 0.95,
+    fp_kind: str = "morgan",
+    fp_nbits: int = 2048,
+    fp_radius: int = 2,
+    unique: bool = True,
+    seed: Optional[int] = None,
+    out_prefix: Optional[str] = None,
+):
+    if seed is not None:
+        random.seed(seed)
+        torch.manual_seed(seed)
+
+    src_m = mol_from_smiles(src_smiles)
+    if src_m is None:
+        raise ValueError("SMILES sorgente invalido")
+
+    policy.eval()
+    generated: List[str] = []
+    seen = set()
+
+    action_logs = []
+    step_logs = []  
+
+    for i in range(n_samples):
+        env = MutEnv(src_m, max_steps=max_steps, fp_kind=fp_kind, fp_nbits=fp_nbits, fp_radius=fp_radius)
+        done = False
+
+        traj_smiles: List[str] = []
+
+        while not done:
+            step_res = env.step(policy, temperature, top_p)
+            done = step_res.done
+
+            smi_step = mol_to_smiles(env.mol)
+            last_action = env.actions[-1] if len(env.actions) > 0 else None
+            last_op = last_action["op"] if last_action else None
+            last_frag = last_action["frag"] if last_action else None
+
+            if step_res.changed or last_op == STOP_OP:
+                traj_smiles.append(smi_step)
+
+                sa_step = sa_score(env.mol)
+                q_step = qed_score(env.mol)
+                sim_step = tanimoto(env.mol, src_m, fp_kind=fp_kind, fp_nbits=fp_nbits, fp_radius=fp_radius)
+                step_logs.append({
+                    "id": f"mol_{len(generated) + 1:03d}",
+                    "t": env.t,
+                    "op": last_op,
+                    "frag": last_frag,
+                    "smiles": smi_step,
+                    "SA": float(sa_step),
+                    "QED": float(q_step),
+                    "Tanimoto_src": float(sim_step),
+                    "src": src_smiles,
+                })
+
+        final_smi = mol_to_smiles(env.mol)
+        if unique and final_smi in seen:
+            continue
+        seen.add(final_smi)
+        generated.append(final_smi)
+
+        sa = sa_score(env.mol)
+        q = qed_score(env.mol)
+        sa_gen = sa_score(src_m)
+        q_gen = qed_score(src_m)
+        sim_src = tanimoto(env.mol, src_m, fp_kind=fp_kind, fp_nbits=fp_nbits, fp_radius=fp_radius)
+
+        action_logs.append({
+            "id": f"mol_{len(generated):03d}",
+            "smiles": final_smi,
+            "steps": env.t,
+            "actions_json": json.dumps(env.actions, ensure_ascii=False),
+            "intermediate_smiles_json": json.dumps(traj_smiles, ensure_ascii=False),
+            "n_intermediate": len(traj_smiles),
+            "SA": float(sa),
+            "QED": float(q),
+            "SA_src": float(sa_gen),
+            "QED_src": float(q_gen),
+            "Tanimoto_src": float(sim_src),
+        })
+    return action_logs
+
 def load_srcs(csv_path: str, src_col: str | None = None):
     df = pd.read_csv(csv_path)
     col = None

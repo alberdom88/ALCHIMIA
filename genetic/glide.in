@@ -1,0 +1,5 @@
+FORCEFIELD   OPLS_2005
+GRIDFILE    /storage/userinternal/icbari/pdbbind/refactoring/evolution/6KPC_grid_cris.zip
+LIGANDFILE   smi.sd
+PRECISION   SP
+
