@@ -40,7 +40,7 @@ Examples:
 
 `python train.py --mode sample --out_prefix <out_prefix> --gen_max_steps <gen_max_steps> --gen_temperature <gen_temperature> --gen_top_p <gen_top_p> --n_samples <n_samples> --src <src> --fp_kind <fp_kind> --fp_nbits <fp_nbits> --fp_radius <fp_radius> --device <device> --ckpt <ckpt>`
 
-`<out_prefix>`: output directory\
+`<out_prefix>`: output\
 `<gen_max_steps>`: maximum number of applied molecular trasformations (M)\
 `<gen_temperature>`: temperature scaling\
 `<gen_top_p>`: top-p (nucleus) sampling\
@@ -56,6 +56,6 @@ The models trained for the paper for M ranging from 1 to 9 are provided in the m
 
 Example:
 
-`python train.py --mode sample --out_prefix run/ --gen_max_steps 3 --gen_temperature 1.0 --gen_top_p 0.95 --n_samples 20 --src "CC(C)Cc1ccc(cc1)C(C)C(=O)O" --fp_kind morgan --fp_nbits 2048 --fp_radius 2 --device cuda:1 --ckpt models/policy_m3.pt`
+`python train.py --mode sample --out_prefix run --gen_max_steps 3 --gen_temperature 1.0 --gen_top_p 0.95 --n_samples 20 --src "CC(C)Cc1ccc(cc1)C(C)C(=O)O" --fp_kind morgan --fp_nbits 2048 --fp_radius 2 --device cuda:1 --ckpt models/policy_m3.pt`
 
 

@@ -31,7 +31,6 @@ OUTPUT_FOLDER = "results"  #output folder
 
 if os.path.exists(OUTPUT_FOLDER):
     print("The output folder already exists")
-    sys.exit(1)
 else:
     os.makedirs(OUTPUT_FOLDER)
     print("Output Folder created")
