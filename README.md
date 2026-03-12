@@ -89,3 +89,6 @@ To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own
 `OUTPUT_FOLDER = "results"  #output folder`
 
 4) Run `python genetic.py`
+
+In order to check the convergence run
+`python convergence.py done_so_far`
