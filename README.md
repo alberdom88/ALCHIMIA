@@ -8,6 +8,17 @@ This package requires:
 * tqdm
 * rdkit
 
+## Installation
+
+Run the following commands (tested with python 3.12.3):
+
+`python -m venv alchimia
+source alchimia/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+chmod 755 genetic/glide.sh
+chmod 755 genetic/ligprep.sh`
+
 ## Usage
 ### Training 
 
@@ -58,4 +69,24 @@ Example:
 
 `python train.py --mode sample --out_prefix run --gen_max_steps 3 --gen_temperature 1.0 --gen_top_p 0.95 --n_samples 20 --src "CC(C)Cc1ccc(cc1)C(C)C(=O)O" --fp_kind morgan --fp_nbits 2048 --fp_radius 2 --device cuda:1 --ckpt models/policy_m3.pt`
 
+### Genetic algorithm
+
+To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own the Schrodinger suite (https://www.schrodinger.com/platform/) with an active licence. The code is in the genetic folder. The the following steps must be followed:
+1) Set the SCHRODINGER environment variable pointing to the suite installation folder.
+2) Edit the ligprep.inp and glide.in files with the correct Ligprep and Glide settings.
+3) Edit the genetic.py script setting the constats:
+
+`device = 'cuda'            #'cpu' or 'cuda'
+generations = 1000         #number of generations
+g = 0                      #start generation
+FP_KIND = "morgan"         #fingerprint type
+FP_NBITS = 2048            #fingerprint bits
+FP_RADIUS = 2              #fingerprint radius
+CHILDRENS_PER_MOL = 10     #number of molecules generated per parent mol
+GLOBAL_SIM_CUTOFF = 0.40   #similarity thrashold for elite pool molecules
+TOP_N = 20                 #elite pool size
+SCAFFOLD = None            #scaffold smilses for lead optimization or None
+OUTPUT_FOLDER = "results"  #output folder`
+
+4) Run `python genetic.py`
 
