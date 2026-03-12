@@ -12,12 +12,12 @@ This package requires:
 
 Run the following commands (tested with python 3.12.3):
 
-`python -m venv alchimia\
-source alchimia/bin/activate\
-pip install --upgrade pip\
-pip install -r requirements.txt\
-chmod 755 genetic/glide.sh\
-chmod 755 genetic/ligprep.sh\`
+`python -m venv alchimia`\
+source alchimia/bin/activate`\
+pip install --upgrade pip`\
+pip install -r requirements.txt`\
+chmod 755 genetic/glide.sh`\
+chmod 755 genetic/ligprep.sh`\
 
 ## Usage
 ### Training 
@@ -76,16 +76,16 @@ To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own
 2) Edit the ligprep.inp and glide.in files with the correct Ligprep and Glide settings.
 3) Edit the genetic.py script setting the constats:
 
-`device = 'cuda'            #'cpu' or 'cuda'\
-generations = 1000         #number of generations\
-g = 0                      #start generation\
-FP_KIND = "morgan"         #fingerprint type\
-FP_NBITS = 2048            #fingerprint bits\
-FP_RADIUS = 2              #fingerprint radius\
-CHILDRENS_PER_MOL = 10     #number of molecules generated per parent mol\
-GLOBAL_SIM_CUTOFF = 0.40   #similarity thrashold for elite pool molecules\
-TOP_N = 20                 #elite pool size\
-SCAFFOLD = None            #scaffold smilses for lead optimization or None\
+`device = 'cuda'            #'cpu' or 'cuda'`\
+generations = 1000         #number of generations`\
+g = 0                      #start generation`\
+FP_KIND = "morgan"         #fingerprint type`\
+FP_NBITS = 2048            #fingerprint bits`\
+FP_RADIUS = 2              #fingerprint radius`\
+CHILDRENS_PER_MOL = 10     #number of molecules generated per parent mol`\
+GLOBAL_SIM_CUTOFF = 0.40   #similarity thrashold for elite pool molecules`\
+TOP_N = 20                 #elite pool size`\
+SCAFFOLD = None            #scaffold smilses for lead optimization or None`\
 OUTPUT_FOLDER = "results"  #output folder`\
 
 4) Run `python genetic.py`
