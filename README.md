@@ -12,12 +12,12 @@ This package requires:
 
 Run the following commands (tested with python 3.12.3):
 
-`python -m venv alchimia
-source alchimia/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
-chmod 755 genetic/glide.sh
-chmod 755 genetic/ligprep.sh`
+`python -m venv alchimia`\
+`source alchimia/bin/activate`\
+`pip install --upgrade pip`\
+`pip install -r requirements.txt`\
+`chmod 755 genetic/glide.sh`\
+`chmod 755 genetic/ligprep.sh`
 
 ## Usage
 ### Training 
@@ -28,7 +28,7 @@ chmod 755 genetic/ligprep.sh`
 `<output_dir>`: output directory\
 `<epochs>`: number of training epochs\
 `<episodes>`: number of smiles generated for single molecule\
-`<max_steps>`: maximum number of applied molecular trasformations (M)\
+`<max_steps>`: maximum number of applied molecular transformations (M)\
 `<lr>`: learning rate\
 `<temperature>`: temperature scaling\
 `<top_p>`: top-p (nucleus) sampling\
@@ -52,7 +52,7 @@ Examples:
 `python train.py --mode sample --out_prefix <out_prefix> --gen_max_steps <gen_max_steps> --gen_temperature <gen_temperature> --gen_top_p <gen_top_p> --n_samples <n_samples> --src <src> --fp_kind <fp_kind> --fp_nbits <fp_nbits> --fp_radius <fp_radius> --device <device> --ckpt <ckpt>`
 
 `<out_prefix>`: output\
-`<gen_max_steps>`: maximum number of applied molecular trasformations (M)\
+`<gen_max_steps>`: maximum number of applied molecular transformations (M)\
 `<gen_temperature>`: temperature scaling\
 `<gen_top_p>`: top-p (nucleus) sampling\
 `<n_samples>`: number of molecules to be generated\
@@ -71,22 +71,21 @@ Example:
 
 ### Genetic algorithm
 
-To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own the Schrodinger suite (https://www.schrodinger.com/platform/) with an active licence. The code is in the genetic folder. The the following steps must be followed:
+To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own the Schrodinger suite (https://www.schrodinger.com/platform/) with an active licence. The code is in the genetic folder. The following steps must be followed:
 1) Set the SCHRODINGER environment variable pointing to the suite installation folder.
 2) Edit the ligprep.inp and glide.in files with the correct Ligprep and Glide settings.
-3) Edit the genetic.py script setting the constats:
+3) Edit the genetic.py script setting the constants:
 
-`device = 'cuda'            #'cpu' or 'cuda'
-generations = 1000         #number of generations
-g = 0                      #start generation
-FP_KIND = "morgan"         #fingerprint type
-FP_NBITS = 2048            #fingerprint bits
-FP_RADIUS = 2              #fingerprint radius
-CHILDRENS_PER_MOL = 10     #number of molecules generated per parent mol
-GLOBAL_SIM_CUTOFF = 0.40   #similarity thrashold for elite pool molecules
-TOP_N = 20                 #elite pool size
-SCAFFOLD = None            #scaffold smilses for lead optimization or None
-OUTPUT_FOLDER = "results"  #output folder`
+`device = 'cuda'            #'cpu' or 'cuda'`\
+`generations = 1000         #number of generations`\
+`g = 0                      #start generation`\
+`FP_KIND = "morgan"         #fingerprint type`\
+`FP_NBITS = 2048            #fingerprint bits`\
+`FP_RADIUS = 2              #fingerprint radius`\
+`CHILDRENS_PER_MOL = 10     #number of molecules generated per parent mol`\
+`GLOBAL_SIM_CUTOFF = 0.40   #similarity threshold for elite pool molecules`\
+`TOP_N = 20                 #elite pool size`\
+`SCAFFOLD = None            #scaffold smiles for lead optimization or None`\
+`OUTPUT_FOLDER = "results"  #output folder`
 
 4) Run `python genetic.py`
-
