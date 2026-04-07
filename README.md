@@ -73,7 +73,7 @@ Example:
 
 To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own the Schrodinger suite (https://www.schrodinger.com/platform/) with an active licence. The code is in the genetic folder. The following steps must be followed:
 1) Set the SCHRODINGER environment variable pointing to the suite installation folder.
-2) Edit the ligprep.inp and glide.in files with the correct Ligprep and Glide settings.
+2) Edit the ligprep.inp and glide.in files with the correct Ligprep and Glide settings. In particular, replace <grid_file_path> in glide.in with the full path of the grid file generated via Maestro.
 3) Edit the genetic.py script setting the constants:
 
 `device = 'cuda'            #'cpu' or 'cuda'`\
@@ -88,7 +88,9 @@ To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own
 `SCAFFOLD = None            #scaffold smiles for lead optimization or None`\
 `OUTPUT_FOLDER = "results"  #output folder`
 
-4) Run `python genetic.py`
+4) 
+
+5) Run `python genetic.py`
 
 In order to check the convergence run
 `python convergence.py done_so_far`
