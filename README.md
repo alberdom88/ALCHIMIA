@@ -88,9 +88,19 @@ To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own
 `SCAFFOLD = None            #scaffold smiles for lead optimization or None`\
 `OUTPUT_FOLDER = "results"  #output folder`
 
-4) 
+4) Initialize the done_so_far file replacing:
 
-5) Run `python genetic.py`
+<smiles> = SMILES code of the starting molecule
+<DS> = docking score of the starting molecule
+<LE> = ligand efficency of the starting molecule
+<QED> = QED score of the starting molecule
+<SA> = SA score of the starting molecule
+<LogP> = LogP score of the starting molecule
+<chiral> = number of chiral centers of the starting molecule
+
+Copy done_so_far in best_so_far
+
+6) Run `python genetic.py`
 
 In order to check the convergence run
 `python convergence.py done_so_far`
