@@ -96,7 +96,7 @@ To run a genetic algorithm in the spirit of the ALCHIMIA paper the user must own
 `<QED>` = QED score of the starting molecule\
 `<SA>` = SA score of the starting molecule\
 `<LogP>` = LogP score of the starting molecule\
-`<chiral>` = number of chiral centers of the starting molecule\
+`<chiral>` = number of chiral centers of the starting molecule
 
 Copy done_so_far in best_so_far
 
