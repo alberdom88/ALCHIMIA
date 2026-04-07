@@ -1,5 +1,5 @@
 FORCEFIELD   OPLS_2005
-GRIDFILE    <gridfile path>
+GRIDFILE    <grid_file_path>
 LIGANDFILE   smi.sd
 PRECISION   SP
 
